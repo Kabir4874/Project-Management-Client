@@ -11,7 +11,7 @@ export enum Status {
   ToDo = "To Do",
   WorkInProgress = "Work In Progress",
   UnderReview = "Under Review",
-  Complete = "Completed",
+  Completed = "Completed",
 }
 export enum Priority {
   Urgent = "Urgent",
@@ -40,7 +40,7 @@ export interface Attachment {
 
 export interface Task {
   id: number;
-  title: number;
+  title: string;
   description?: string;
   status?: Status;
   priority?: Priority;
