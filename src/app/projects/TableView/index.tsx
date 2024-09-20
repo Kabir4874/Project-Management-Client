@@ -80,7 +80,7 @@ const Table = ({ id, setIsModalNewTaskOpen }: TableProps) => {
           isSmallText
           buttonComponent={
             <button
-              className="flex items-center bg-blue-primary px-3 py-2 text-white hover:bg-blue-600 rounded"
+              className="flex items-center rounded bg-blue-primary px-3 py-2 text-white hover:bg-blue-600"
               onClick={() => setIsModalNewTaskOpen(true)}
             >
               Add Task
