@@ -1,9 +1,25 @@
+"use client";
 import { useGetUsersQuery } from "@/state/api";
 import React from "react";
 import { useAppSelector } from "../redux";
 import Header from "@/components/Header";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import {
+  DataGrid,
+  GridColDef,
+  GridToolbarContainer,
+  GridToolbarExport,
+  GridToolbarFilterButton,
+} from "@mui/x-data-grid";
 import Image from "next/image";
+import { dataGridClassNames, dataGridSxStyles } from "@/lib/utils";
+
+const CustomToolbar = () => (
+  <GridToolbarContainer className="toolbar flex gap-2">
+    <GridToolbarFilterButton />
+    <GridToolbarExport />
+  </GridToolbarContainer>
+);
+
 const columns: GridColDef[] = [
   { field: "userId", headerName: "ID", width: 100 },
   { field: "username", headerName: "Username", width: 150 },
@@ -35,7 +51,17 @@ const Users = () => {
     <div className="flex w-full flex-col p-8">
       <Header name="Users" />
       <div className="h-[650px] w-full">
-        <DataGrid rows={users || []} columns={columns} />
+        <DataGrid
+          rows={users || []}
+          columns={columns}
+          getRowId={(row) => row.userId}
+          pagination
+          className={dataGridClassNames}
+          sx={dataGridSxStyles(isDarkMode)}
+          slots={{
+            toolbar: CustomToolbar,
+          }}
+        />
       </div>
     </div>
   );
